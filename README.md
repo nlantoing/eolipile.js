@@ -71,6 +71,8 @@ Flush the event list (kill all events so no endCallback is called)
 Custom property
 -------------------
 
+Add the countdown property which can be used inside callback and endCallback functions
+
     pile.append({
       'timer': 1000,
       'countdown': 4,
@@ -88,5 +90,5 @@ Custom property
 Notes
 -----
 
-If no events are active the timeloop will stop, the timeloop will automaticly (re)start when a new event have been added.
-You can bind callback and endCallback to another context with the Function bind methode
+If no events are active the timeloop will stop, the timeloop will automaticly (re)start when a new event is added.
+You can bind callback and endCallback to another context with the bind methode
