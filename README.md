@@ -3,6 +3,7 @@ eolipile.js
 
 A small and portable timing-events helper, compatible with document (requestAnimationFrame) and workers environments.
 
+This class doesn't require any lib and will use the requestAnimationFrame function if supported. His prupose is to centralise time-events and ease the creation of real-time API.
 
 Usage
 =====
