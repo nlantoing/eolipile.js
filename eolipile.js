@@ -87,8 +87,8 @@ Eolipile.prototype._workerContextInit = function(){
 Eolipile.prototype._loop = function(start){
     var newPile = [];
     for(var pileSize = this._PILE.length; pileSize; pileSize--){
+        var process = this._PILE.pop();
         try{
-            var process = this._PILE.pop();
             if(process._COUNTER <= start){
                 var replay = process.callback();
                 if(replay){
@@ -100,11 +100,7 @@ Eolipile.prototype._loop = function(start){
             }else
                 newPile.push(process);
         }catch(e){
-	    //TODO
-            var level = (typeof e.level != 'undefined') ? e.level : 2;
-            var message = e.message || e;
-            var datas = e.datas || e.stack || e;
-            //debug.throw(level,message,datas);
+	    console.error("[eolipile] The event "+process.id+" couldn't be parsed and have been removed from the pile.", e.message);
         }
     }
 
@@ -154,8 +150,7 @@ Eolipile.prototype.append = function(process){
         }else
             throw 'Missing parameters'
     }catch(e){
-	//TODO
-        //debug.throw(2,'[WORKER]While trying to append: '.concat(e),process);
+	console.error("[eolipile] Append failed", e.message);
     }
     return;
 }
@@ -169,7 +164,7 @@ Eolipile.prototype.append = function(process){
  */
 Eolipile.prototype.setTimeout = function(callback,duration){
     if(typeof(callback) !=='function' || typeof(duration) !=='number'){
-	//TODO: catch exception
+	console.error("[eolipile] setTimeout failed, wrong parameter's type.");
 	return this;
     }
     this.append({
