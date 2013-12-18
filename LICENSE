@@ -1,4 +1,4 @@
-Copyright (c) 2013, Haulric
+Copyright (c) 2013, Nicolas Lantoing
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
